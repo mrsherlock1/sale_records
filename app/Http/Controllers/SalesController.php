@@ -18,6 +18,12 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {
+
+        $request->validate([
+            'start_date' => 'date',
+            'end_date' => 'date'
+        ]);
+
         $sales = new Sales;
 
         $sales = $sales->when($request->has('start_date'), function ($query) use ($request) {
